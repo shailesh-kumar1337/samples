@@ -1,7 +1,7 @@
 ﻿function endpoint-script 
 {
     <# Getting Current logged in user#>
-    $currentusername = $env:USERNAME
+    $currentusername = $env:alexr
     $hostnameofsystem = hostname
     <#Creating file path variable for savaing <Username>.txt file on Desktop#> 
     $outputfilepath = "C:\Users\" + $currentusername + "\Documents\" + $hostnameofsystem + ".txt"
