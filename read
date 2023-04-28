@@ -1,0 +1,31 @@
+@echo off
+echo Checking Endpoint Security...
+echo.
+
+REM Check if antivirus software is installed and up-to-date
+echo [+] Antivirus software check:
+wmic /node:localhost /namespace:\\root\SecurityCenter2 path AntiVirusProduct get displayName, productState
+echo.
+
+REM Check if Windows Firewall is enabled and properly configured
+echo [+] Windows Firewall check:
+netsh advfirewall show allprofiles
+echo.
+
+REM Check if User Account Control (UAC) is enabled
+echo [+] User Account Control (UAC) check:
+reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v EnableLUA
+echo.
+
+REM Check if automatic updates are enabled and up-to-date
+echo [+] Automatic updates check:
+wmic /node:localhost /namespace:\\root\SecurityCenter2 path AutomaticUpdates get AUOption, AUState
+echo.
+
+REM Check if encryption is enabled on the system drive
+echo [+] System drive encryption check:
+manage-bde -status c:
+echo.
+
+echo Endpoint Security check complete.
+pause
